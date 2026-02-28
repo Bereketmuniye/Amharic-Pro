@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amharic (Pro) - Documentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #ffffff;
+      --bg-sidebar: #f8fafc;
+      --bg-code: #0f172a;
+
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-accent: #2563eb;
+      --text-code: #38bdf8;
+
+      --border-color: #e2e8f0;
+
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+
+      --sidebar-width: 280px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.7;
+      display: flex;
+    }
+
+    /* Sidebar Styles */
+    aside {
+      width: var(--sidebar-width);
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      padding: 2rem 1.5rem;
+      overflow-y: auto;
+    }
+
+    aside .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    aside .logo span {
+      background: var(--accent);
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav li {
+      margin-bottom: 0.75rem;
+    }
+
+    nav h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin: 2rem 0 0.75rem;
+      font-weight: 600;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: block;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background-color: #eff6ff;
+      color: var(--accent);
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      padding: 4rem 4rem 6rem;
+      max-width: 1000px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      background: #eff6ff;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+      color: #0f172a;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 3rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+      color: #0f172a;
+    }
+
+    h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: #1e293b;
+    }
+
+    p {
+      color: #334155;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Code Blocks */
+    pre,
+    .code-block {
+      background-color: var(--bg-code);
+      color: #e2e8f0;
+      padding: 1.5rem;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      border: 1px solid #1e293b;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+    }
+
+    p code,
+    li code {
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    kbd {
+      background: var(--bg-code);
+      color: #f8fafc;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-bottom: 2px solid #334155;
+    }
+
+    /* Steps List */
+    .steps {
+      counter-reset: step;
+      list-style-type: none;
+      margin-bottom: 2rem;
+    }
+
+    .steps>li {
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 1.5rem;
+      min-height: 2rem;
+    }
+
+    .steps>li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--bg-sidebar);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      font-weight: 600;
+      color: #0f172a;
+      background: #f8fafc;
+    }
+
+    td {
+      color: #475569;
+    }
+
+    td.char {
+      font-size: 1.25rem;
+      color: #0f172a;
+      font-weight: 500;
+    }
+
+    /* Layout Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    /* Note Box */
+    .note {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid #22c55e;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+
+    .note p {
+      margin: 0;
+      color: #166534;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <aside>
+    <div class="logo">
+      Amharic <span>Pro</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#introduction" class="active">Introduction</a></li>
+        <li><a href="#installation">Installation Guide</a></li>
+        <li><a href="#configuration">Configuration</a></li>
+
+        <h4>Typing Reference</h4>
+        <li><a href="#vowels">Independent Vowels</a></li>
+        <li><a href="#consonants">Consonant Modifiers</a></li>
+        <li><a href="#wa-combos">The "Wa" Combinations</a></li>
+        <li><a href="#numbers">Numbers & Punctuation</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+    <div class="badge">v1.2.0 - Stable Release</div>
+    <h1 id="introduction">Amharic Keyboard (Pro)</h1>
+    <p class="lead">A deeply integrated, highly modernized m17n input schema for typing Amharic effortlessly on Ubuntu
+      and Kali Linux architectures.</p>
+
+    <p>Traditional Linux Amharic setups suffer from complex configuration processes and bloated phonetic databases that
+      make intuitive typing incredibly frustrating for developers and modern users. <strong>Amharic Pro</strong> solves
+      this by synthesizing the massive official `m17n` SERA database with a newly engineered, lightweight, logical
+      phonetic mapping.</p>
+
+    <div class="note">
+      <p><strong>Under the hood:</strong> It utilizes the robust `ibus-m17n` engine, meaning it runs blazingly fast
+        natively within the OS's window manager without relying on third-party daemon processes.</p>
+    </div>
+
+    ---
+
+    <h2 id="installation">Installation Guide</h2>
+    <p>We provide a shell script that handles package management dependencies (`ibus`, `ibus-m17n`, `m17n-db`) and
+      registers the custom `.mim` mapping file to your system tree (`/usr/share/m17n/`).</p>
+
+    <ol class="steps">
+      <li>
+        <strong>Ensure executable permissions</strong>
+        <p>Give the installer execution rights using `chmod`.</p>
+        <pre>chmod +x install.sh</pre>
+      </li>
+      <li>
+        <strong>Execute the script</strong>
+        <p>Run the script. You will be prompted for `sudo` to use the APT package manager and write to `/usr/share/`.
+        </p>
+        <pre>./install.sh</pre>
+      </li>
+      <li>
+        <strong>Restart the display manager</strong>
+        <p>While the script restarts the `ibus` daemon, it is highly recommended to <strong>Log Out</strong> and
+          <strong>Log In</strong> again to ensure GNOME/XFCE input layers refresh.</p>
+      </li>
+    </ol>
+
+    ---
+
+    <h2 id="configuration">Configuration</h2>
+    <p>To enable the linguistic mapping in your desktop environment:</p>
+    <ol class="steps">
+      <li>Navigate to <strong>Settings</strong> > <strong>Keyboard</strong> (or <strong>Region & Language</strong>
+        depending on your DE).</li>
+      <li>Under <strong>Input Sources</strong>, click the <code>+</code> button or "Add Input Source".</li>
+      <li>Click the <kbd>⋮</kbd> (More) button and use the search bar to query <code>Amharic</code>.</li>
+      <li>Select <strong>Amharic (Pro)</strong> or <strong>Amharic (Custom)</strong> from the expanded list.</li>
+      <li>Use the global shortcut (<kbd>Super</kbd> + <kbd>Space</kbd>) to instantly toggle the input method layer.</li>
+    </ol>
+
+    <br><br><br>
+
+    <h1 id="vowels">Typing Reference</h1>
+    <p class="lead">The grammar of the keyboard is optimized to reduce keystrokes. Here are the core conceptual rules.
+    </p>
+
+    <div class="grid-2">
+      <div>
+        <h3 id="vowels">1. Independent Vowels</h3>
+        <p>The system intelligently maps standard vowel keys to their primary character states, avoiding complex
+          modifier requirements.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Keystroke</th>
+              <th>Character</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><kbd>a</kbd></td>
+              <td class="char">አ</td>
+            </tr>
+            <tr>
+              <td><kbd>uu</kbd></td>
+              <td class="char">ኡ</td>
+            </tr>
+            <tr>
+              <td><kbd>ii</kbd></td>
+              <td class="char">ኢ</td>
+            </tr>
+            <tr>
+              <td><kbd>aa</kbd></td>
+              <td class="char">ኣ</td>
+            </tr>
+            <tr>
+              <td><kbd>ee</kbd></td>
+              <td class="char">ኤ</td>
+            </tr>
+            <tr>
+              <td><kbd>e</kbd></td>
+              <td class="char">እ</td>
+            </tr>
+            <tr>
+              <td><kbd>oo</kbd></td>
+              <td class="char">ኦ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h3 id="vowels-ayn">Ayn (ዐ) Vowels</h3>
+        <p>Capital variants trigger the secondary Ayn family.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Keystroke</th>
+              <th>Character</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><kbd>A</kbd></td>
+              <td class="char">ዐ</td>
+            </tr>
+            <tr>
+              <td><kbd>U</kbd></td>
+              <td class="char">ዑ</td>
+            </tr>
+            <tr>
+              <td><kbd>I</kbd></td>
+              <td class="char">ዒ</td>
+            </tr>
+            <tr>
+              <td><kbd>AA</kbd></td>
+              <td class="char">ዓ</td>
+            </tr>
+            <tr>
+              <td><kbd>EE</kbd></td>
+              <td class="char">ዔ</td>
+            </tr>
+            <tr>
+              <td><kbd>E</kbd></td>
+              <td class="char">ዕ</td>
+            </tr>
+            <tr>
+              <td><kbd>O</kbd></td>
+              <td class="char">ዖ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <h3 id="consonants">2. Advanced Consonant Modifiers</h3>
+    <p>By default, attaching a vowel to a consonant generates the respective Fidel shape (e.g., <kbd>ka</kbd> outputs
+      <code>ካ</code>, <kbd>kee</kbd> outputs <code>ኬ</code>). To optimize for unique letters, we've formalized intuitive
+      roots:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Root String</th>
+          <th>Outputs</th>
+          <th>Example Output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><kbd>sz</kbd> + [vowel]</td>
+          <td class="char">ሠ / ሡ / ሣ</td>
+          <td><kbd>sza</kbd> → <code>ሣ</code></td>
+        </tr>
+        <tr>
+          <td><kbd>tz</kbd> + [vowel]</td>
+          <td class="char">ፀ / ፁ / ፃ</td>
+          <td><kbd>tzu</kbd> → <code>ፁ</code></td>
+        </tr>
+        <tr>
+          <td><kbd>zh</kbd> + [vowel]</td>
+          <td class="char">ዠ / ዡ / ዣ</td>
+          <td><kbd>zhe</kbd> → <code>ዠ</code></td>
+        </tr>
+        <tr>
+          <td><kbd>S</kbd> + [vowel] (Capital)</td>
+          <td class="char">ጸ / ጹ / ጻ</td>
+          <td><kbd>Sa</kbd> → <code>ጻ</code></td>
+        </tr>
+        <tr>
+          <td><kbd>T</kbd> + [vowel] (Capital)</td>
+          <td class="char">ጠ / ጡ / ጣ</td>
+          <td><kbd>Ta</kbd> → <code>ጣ</code></td>
+        </tr>
+        <tr>
+          <td><kbd>P</kbd> + [vowel] (Capital)</td>
+          <td class="char">ጰ / ጱ / ጳ</td>
+          <td><kbd>Pa</kbd> → <code>ጳ</code></td>
+        </tr>
+        <tr>
+          <td><kbd>C</kbd> + [vowel] (Capital)</td>
+          <td class="char">ጨ / ጩ / ጫ</td>
+          <td><kbd>Cee</kbd> → <code>ጬ</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <div class="grid-2">
+      <div>
+        <h3 id="wa-combos">3. "Wa" Combinators</h3>
+        <p>Tacked onto any consonant, the <kbd>w</kbd> + <kbd>a</kbd> string instantly outputs the combined structure.
+        </p>
+        <table>
+          <tbody>
+            <tr>
+              <td><kbd>lwa</kbd></td>
+              <td class="char">ሏ</td>
+            </tr>
+            <tr>
+              <td><kbd>mwa</kbd></td>
+              <td class="char">ሟ</td>
+            </tr>
+            <tr>
+              <td><kbd>qwa</kbd></td>
+              <td class="char">ቋ</td>
+            </tr>
+            <tr>
+              <td><kbd>twa</kbd></td>
+              <td class="char">ቷ</td>
+            </tr>
+            <tr>
+              <td><kbd>chwa</kbd></td>
+              <td class="char">ቿ</td>
+            </tr>
+            <tr>
+              <td><kbd>jwa</kbd></td>
+              <td class="char">ጇ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h3 id="numbers">4. Number / Syntax Interpolation</h3>
+        <p>Numbers require the backtick <kbd>`</kbd> escape trigger to prevent collision with Western numeric input.</p>
+        <table>
+          <tbody>
+            <tr>
+              <td><kbd>`1</kbd></td>
+              <td class="char">፩</td>
+            </tr>
+            <tr>
+              <td><kbd>`10</kbd></td>
+              <td class="char">፲</td>
+            </tr>
+            <tr>
+              <td><kbd>`100</kbd></td>
+              <td class="char">፻</td>
+            </tr>
+            <tr>
+              <td><kbd>:</kbd> / <kbd>::</kbd></td>
+              <td class="char">፡ / ።</td>
+            </tr>
+            <tr>
+              <td><kbd>,</kbd> / <kbd>;</kbd></td>
+              <td class="char">፣ / ፤</td>
+            </tr>
+            <tr>
+              <td><kbd>?</kbd></td>
+              <td class="char">፧</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Simple script to handle active states dynamically
+    const sections = document.querySelectorAll("h1[id], h2[id], h3[id]");
+    const navLinks = document.querySelectorAll("nav a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 60) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
